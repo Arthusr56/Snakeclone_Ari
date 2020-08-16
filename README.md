@@ -1,2 +1,2 @@
 # Snakeclone_Ari
-Clone of the famous "Snake" game made by me 
+Clone of the classic "Snake" game made by me 
