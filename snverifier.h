@@ -31,7 +31,7 @@ bool validornot(int Cord,int siz){
  int i,j;
 
  for(i=0;i<siz;i++){
-   if(vis[coor[i].fst][coor[i].snd]==false)vis[coor[i].fst][coor[i].snd]=true;
+   if(vis[Cord[i].fst][Cord[i].snd]==false)vis[Cord[i].fst][Cord[i].snd]=true;
    else{
      return false;
    }
