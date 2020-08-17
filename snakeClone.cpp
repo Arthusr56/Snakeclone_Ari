@@ -5,6 +5,7 @@ using namespace std;
 
  bool validAnswer = false;
  int velocityMovement;
+ int Results;
 
 enum possibleInput{
     easy = 0,
@@ -132,8 +133,23 @@ void Menu(){
    play(velocityMovement);
 }
 
+void Endscreen(){
+
+     system("cls");
+      cout<<"Your snake crashed, better luck next time!\n";
+      Sleep(2500);
+      cout<<"Your score is:\n";
+      Sleep(2500);
+      cout<<Results;
+     system("cls");
+      cout<<"Hope you had fun!\n";
+      cout<<"Press any key to exit . . .";
+      cin.get();
+}
 
 int main(){
 
  Menu();
+ Results = Score;
+ Endscreen();
 }

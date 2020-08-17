@@ -19,7 +19,7 @@ void setValids(){
 }
 
 
-bool isItValid(vector < pair < int , int > > snakeBody(), int currentLength){
+bool isItValid(vector < pair < int , int > > snakeBody, int currentLength){
 
  /**
   *   Verifies whether or not the position of the snake's body is valid
@@ -32,7 +32,7 @@ bool isItValid(vector < pair < int , int > > snakeBody(), int currentLength){
  int i, j;
  int actualRow, actualColumn;
 
- /*
+
  for(i = 0 ; i < currentLength ; i++){
 
     actualRow = snakeBody[i].fst;
@@ -42,7 +42,7 @@ bool isItValid(vector < pair < int , int > > snakeBody(), int currentLength){
         return false;
     visitedCells[actualRow][actualColumn] = true;
  }
- */
+
 
  for(i = 1 ; i < 16 ; i++){
     for(j = 1 ; j < 18 ; j++)

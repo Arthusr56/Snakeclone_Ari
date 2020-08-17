@@ -1,11 +1,14 @@
 #include <bits/stdc++.h>
 #include "snakeVerifier.h"
+#include <windows.h>
+#include <time.h>
 #define fst first
 #define snd second
 using namespace std;
 
  const int maxRow = 17;
  const int maxColumn = 19;
+ const float frame_length = 1;
 
  /*
  Height : 15
@@ -34,7 +37,10 @@ struct Pixel{
  char playField[maxRow][maxColumn]; ///playing field
  /// first : row  second : column
  vector< pair < int , int > > Coordinates(300); /// coordinates of each space the snake occupies
+ /// last saved position belongs to the snake's head
  int snakesLength = 4;
+ Pixel fruit;
+ int Score = 0;
 
 int randInterval(int a, int b){
    return rand()%(b-a)+a;
@@ -89,6 +95,7 @@ void commenceSetup(){
 
 void outputField(Pixel fruit){
 
+ system("cls");
  int i, j;
 
  for(i = 0 ; i < 17 ; i++){
@@ -100,12 +107,81 @@ void outputField(Pixel fruit){
  }
 }
 
-void play(int msPermove){
+char determineNewDirection(char currentDirection, char actionInputed){
+
+ switch(actionInputed){
+  case 'W':
+      if(currentDirection == 'S') return currentDirection;
+      else return actionInputed;
+  case 'A':
+      if(currentDirection == 'D') return currentDirection;
+      else return actionInputed;
+  case 'S':
+      if(currentDirection == 'W') return currentDirection;
+      else return actionInputed;
+  case 'D':
+      if(currentDirection == 'A') return currentDirection;
+      else return actionInputed;
+  default:
+    return currentDirection;
+ }
+
+}
+
+void updateAndAdd(pair < int , int > newSpot){
+
+ Score++;
+
+ Coordinates[snakesLength] = newSpot;
+ playField[Coordinates[snakesLength-1].fst][Coordinates[snakesLength-1].snd] = '@';
+ playField[Coordinates[snakesLength].fst][Coordinates[snakesLength].snd] = 'O';
+ snakesLength++;
+
+ fruit = asignRandomCell();
+  while(validFruit(fruit) == false)fruit = asignRandomCell();
+}
+
+void updateOnly(pair < int , int > newSpot){
+
+ playField[Coordinates[0].fst][Coordinates[0].snd] = ' ';
+ playField[Coordinates[snakesLength-1].fst][Coordinates[snakesLength-1].snd] = '@';
+
+  for(int i = 0 ; i < snakesLength ; i++)
+    Coordinates[i] = Coordinates[i+1];
+
+ Coordinates[snakesLength-1] = newSpot;
+ playField[Coordinates[snakesLength-1].fst][Coordinates[snakesLength-1].snd] = 'O';
+}
+
+void moveOneCell(char currentDirection , pair< int , int > headPosition){
+
+ pair< int , int > newSpot;
+
+ switch(currentDirection){
+   case 'W':
+      newSpot.fst = headPosition.fst - 1;
+      newSpot.snd = headPosition.snd;
+   case 'A':
+      newSpot.fst = headPosition.fst;
+      newSpot.snd = headPosition.snd - 1;
+   case 'S':
+      newSpot.fst = headPosition.fst + 1;
+      newSpot.snd = headPosition.snd;
+   case 'D':
+      newSpot.fst = headPosition.fst;
+      newSpot.snd = headPosition.snd + 1;
+ }
+
+ if(fruit.row == newSpot.fst && fruit.column == newSpot.snd)
+    updateAndAdd(newSpot);
+ else
+    updateOnly(newSpot);
+}
+
+void play(int msPerMove){
 
  commenceSetup();
- Pixel fruit;
  int i, j;
- int Score = 0;
 
  fruit = asignRandomCell();
   while(validFruit(fruit) == false)fruit = asignRandomCell();
@@ -113,13 +189,31 @@ void play(int msPermove){
  outputField(fruit);
 
  /// Start playing
+ clock_t chronoMeter;
  bool notCrashed = true;
+ int keyPress;
+ char nextAction, currentDirection = 'D';
 
  while(notCrashed == true){
 
+  chronoMeter = clock();
 
+   while(clock() - chronoMeter < (msPerMove * frame_length)){
 
+     //Sleep(200);
+
+     for(keyPress = 0x41 ; keyPress < 0x5a ; keyPress++){
+         if(GetAsyncKeyState(keyPress)){
+            nextAction = char(keyPress);
+            break;
+         }
+     }
+   }
+
+  currentDirection = determineNewDirection(currentDirection, nextAction);
+
+  moveOneCell(currentDirection , Coordinates[snakesLength-1]);
+   if(!isItValid(Coordinates, snakesLength))return;
+  outputField(fruit);
  }
-
-
 }
