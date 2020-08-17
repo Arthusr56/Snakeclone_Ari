@@ -15,16 +15,16 @@ using namespace std;
 void Menu(){
 
   cout<<"Welcome! \n";
-  Sleep(2000);
-  cout<<"This game is a clone of the famous game \"Snake\". \n";
-  Sleep(3000);
+  Sleep(1500);
+  cout<<"This game is a clone of the classic game \"Snake\". \n";
+  Sleep(2500);
   cout<<"Your snake will start at the middle of the plain, an unit of food \n";
   cout<<"will spawn in a random spot of the plain, if you reach the food, \n";
   cout<<"you'll gain a point. \n";
-  Sleep(10000);
+  Sleep(9000);
   cout<<"Be careful though, each time you reach the food, you're snake will \n";
   cout<<"grow one unit of length, occupying more space the larger it gets. \n";
-  Sleep(8000);
+  Sleep(7000);
 
   cout<<"You'll lose if your snake hits the edge of the plain or hits its body. \n \n";
 
@@ -94,7 +94,7 @@ void Menu(){
    }
 
    system("cls");
-   cout<<"Obtain as many point as you can! \n\n";
+   cout<<"Obtain as many points as you can! \n\n";
    Sleep(3000);
 
    play(vel);
