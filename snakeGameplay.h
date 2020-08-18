@@ -59,6 +59,9 @@ bool validFruit(Pixel fruit){
 
  }
 
+ if(fruit.row == 0 || fruit.row == 16)return false;
+ if(fruit.column == 0 || fruit.column == 18)return false;
+
  return true;
 }
 

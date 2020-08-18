@@ -142,9 +142,9 @@ void Endscreen(){
       Sleep(2500);
       cout<<"Your score is:\n";
       Sleep(2500);
-      cout<<Results;
-     system("cls");
-      cout<<"Hope you had fun!\n";
+      cout<<Results<<"\n";
+      Sleep(3000);
+      cout<<"Hope you had fun!\n\n";
       system("pause");
 }
 
