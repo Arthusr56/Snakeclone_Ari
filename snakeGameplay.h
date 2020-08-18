@@ -123,7 +123,7 @@ char determineNewDirection(char currentDirection, char actionInputed){
       if(currentDirection == 'A') return currentDirection;
       else return actionInputed;
   default:
-    return currentDirection;
+      return currentDirection;
  }
 
 }
@@ -161,15 +161,19 @@ void moveOneCell(char currentDirection , pair< int , int > headPosition){
    case 'W':
       newSpot.fst = headPosition.fst - 1;
       newSpot.snd = headPosition.snd;
+      break;
    case 'A':
       newSpot.fst = headPosition.fst;
       newSpot.snd = headPosition.snd - 1;
+      break;
    case 'S':
       newSpot.fst = headPosition.fst + 1;
       newSpot.snd = headPosition.snd;
+      break;
    case 'D':
       newSpot.fst = headPosition.fst;
       newSpot.snd = headPosition.snd + 1;
+      break;
  }
 
  if(fruit.row == newSpot.fst && fruit.column == newSpot.snd)

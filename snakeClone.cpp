@@ -21,7 +21,7 @@ void introduction(){
   Sleep(1500);
   cout<<"This game is a clone of the classic game \"Snake\". \n";
   Sleep(2500);
-  cout<<"Your snake will start at the middle of the plain, an unit of food \n";
+  cout<<"Your snake will start at the top-left edge of the plain, an unit of food \n";
   cout<<"will spawn in a random spot of the plain, if you reach the food, \n";
   cout<<"you'll gain a point. \n";
   Sleep(9000);
@@ -105,23 +105,26 @@ void Menu(){
       levelChosen = playerInput(difficultyLevel);
 
       switch(levelChosen){
-
          case 0:
            velocityMovement = 800;
+           break;
          case 1:
            velocityMovement = 400;
+           break;
          case 2:
            velocityMovement = 200;
+           break;
          case 3:
            validAnswer = false;
            showcaseControls();
            optionDisplay();
            cin>>difficultyLevel;
+           break;
          case 4:
            unvalidInput();
            optionDisplay();
            cin>>difficultyLevel;
-
+           break;
       }
 
    }
