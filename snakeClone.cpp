@@ -30,8 +30,7 @@ void introduction(){
   Sleep(7000);
   cout<<"You'll lose if your snake hits the edge of the plain or hits its body. \n \n";
 
-  cout<<"Press any key to continue . . .";
-  cin.get();
+  system("pause");
   system("cls");
 
 }
@@ -45,8 +44,7 @@ void showcaseControls(){
          cout<<"Use A to go left \n";
          cout<<"Use D to go right \n\n";
 
-         cout<<"Press any key to return . . . \n";
-         cin.get();
+         system("pause");
 
  system("cls");
 }
@@ -121,6 +119,7 @@ void Menu(){
            cin>>difficultyLevel;
            break;
          case 4:
+           validAnswer = false;
            unvalidInput();
            optionDisplay();
            cin>>difficultyLevel;
@@ -146,8 +145,7 @@ void Endscreen(){
       cout<<Results;
      system("cls");
       cout<<"Hope you had fun!\n";
-      cout<<"Press any key to exit . . .";
-      cin.get();
+      system("pause");
 }
 
 int main(){
